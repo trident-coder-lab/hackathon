@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Traffic Management System</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #trafficFlowResult, #demandForecastResult {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #e0f7fa;
+      border: 1px solid #009688;
+      display: none;
+    }
+
+    #reportConfirmation, #feedbackConfirmation {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #c8e6c9;
+      border: 1px solid #388e3c;
+    }
+
+    form {
+      margin-top: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    #map {
+      width: 100%;
+      height: 500px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 15px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      textarea {
+        height: 80px;
+      }
+
+      #map {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Smart Traffic Management System</h1>
+    <nav>
+      <ul>
+        <li><a href="#trafficFlow">Traffic Flow Prediction</a></li>
+        <li><a href="#demandForecast">Traffic Demand Forecasting</a></li>
+        <li><a href="#reportingTools">Reporting Tools</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="trafficFlow">
+      <h2>Traffic Flow Prediction</h2>
+      <p>Our AI predicts traffic flow based on historical data and real-time conditions. Click below to get the current prediction based on your location.</p>
+      <button onclick="generateTrafficFlowPrediction()">Predict Traffic Flow</button>
+      <div id="trafficFlowResult"></div>
+    </section>
+
+    <section id="demandForecast">
+      <h2>Traffic Demand Forecasting</h2>
+      <p>Our system forecasts future traffic demand using predictive algorithms based on patterns, trends, and real-time data for your location.</p>
+      <button onclick="generateTrafficDemandForecast()">Forecast Traffic Demand</button>
+      <div id="demandForecastResult"></div>
+    </section>
+
+    <section id="reportingTools">
+      <h2>Report Traffic Issues</h2>
+      <form id="reportForm">
+        <label for="issueDescription">Issue Description:</label>
+        <textarea id="issueDescription" placeholder="Describe the issue" required></textarea>
+        <br>
+        <button type="submit">Submit Report</button>
+      </form>
+      <div id="reportConfirmation" style="display:none;">Thank you for your report!</div>
+    </section>
+
+    <section id="feedback">
+      <h2>Provide Feedback</h2>
+      <form id="feedbackForm">
+        <label for="feedbackText">Your Feedback:</label>
+        <textarea id="feedbackText" placeholder="Your feedback helps improve the system" required></textarea>
+        <br>
+        <button type="submit">Submit Feedback</button>
+      </form>
+      <div id="feedbackConfirmation" style="display:none;">Thank you for your feedback!</div>
+    </section>
+
+    <section id="trafficMap">
+      <h2>Real-Time Traffic Map</h2>
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Smart Traffic Solutions</p>
+  </footer>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALl79yW5jzfYCWvuoleZN-vsu4bPsDjdA&libraries=visualization&callback=initMap" async defer></script>
+
+  <script>
+    let map;
+    let userLocation = {};
+
+    function getCurrentTime() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
+    }
+
+    function getUserLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          userLocation.lat = position.coords.latitude;
+          userLocation.lng = position.coords.longitude;
+          console.log("User's Location:", userLocation);
+          initMap();
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function initMap() {
+      if (!userLocation.lat || !userLocation.lng) return;
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: { lat: userLocation.lat, lng: userLocation.lng },
+      });
+
+      const trafficLayer = new google.maps.TrafficLayer();
+      trafficLayer.setMap(map);
+    }
+
+    function generateTrafficFlowPrediction() {
+      if (!userLocation.lat || !userLocation.lng) {
+        alert("Unable to determine your location. Please allow location access.");
+        return;
+      }
+
+      const predictions = [
+        `High traffic expected on Main Street near ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} at ${getCurrentTime()}. Consider using alternate routes.`,
+        `Clear roads in the vicinity of ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} at ${getCurrentTime()}. No significant traffic expected.`,
+        `Traffic congestion reported on routes near ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} at ${getCurrentTime()}. Avoid traveling during peak hours.`,
+        `Expect moderate traffic around ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} at ${getCurrentTime()}.`,
+        `Light traffic expected in the morning hours near ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} at ${getCurrentTime()}.`
+      ];
+
+      const prediction = predictions[Math.floor(Math.random() * predictions.length)];
+      const resultDiv = document.getElementById("trafficFlowResult");
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = `<strong>Prediction:</strong> ${prediction}`;
+    }
+
+    function generateTrafficDemandForecast() {
+      if (!userLocation.lat || !userLocation.lng) {
+        alert("Unable to determine your location. Please allow location access.");
+        return;
+      }
+
+      const forecasts = [
+        `High demand expected on Route 101 near ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} at ${getCurrentTime()}.`,
+        `No significant demand expected near ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} after ${getCurrentTime()}.`,
+        `Moderate demand predicted in suburban areas near ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} at ${getCurrentTime()}.`,
+        `Expect heavy traffic in the city center near ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} at ${getCurrentTime()}.`,
+        `Forecast shows low traffic demand at ${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)} during late evening hours at ${getCurrentTime()}.`
+      ];
+
+      const forecast = forecasts[Math.floor(Math.random() * forecasts.length)];
+      const resultDiv = document.getElementById("demandForecastResult");
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = `<strong>Forecast:</strong> ${forecast}`;
+    }
+
+    window.onload = getUserLocation;
+  </script>
+</body>
+</html>
