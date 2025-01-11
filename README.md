@@ -12,7 +12,8 @@ Solution: A comprehensive traffic management system can monitor and control traf
 Technology: Machine learning and predictive analytics can be applied to forecast traffic conditions and suggest route adjustments for both public and private vehicles.
 Impact: This helps alleviate congestion by rerouting traffic away from heavily congested areas, providing dynamic routing solutions based on the latest data.
 
-3.OpenCV (Open Source Computer Vision Library) is a popular open-source library used for computer vision, machine learning, and image processing. It was designed to provide a common infrastructure for computer vision applications and to accelerate the usage of machine perception in commercial products. OpenCV is written in C++, with bindings available for Python, Java, and other languages.
+3. OpenCV (Open Source Computer Vision Library)
+It is a popular open-source library used for computer vision, machine learning, and image processing. It was designed to provide a common infrastructure for computer vision applications and to accelerate the usage of machine perception in commercial products. OpenCV is written in C++, with bindings available for Python, Java, and other languages.
 
 
 **Our Solution**
