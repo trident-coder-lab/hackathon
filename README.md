@@ -103,23 +103,10 @@ The system uses Google Maps API for location and traffic data. To use the system
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization&callback=initMap" async defer></script>
 ```
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments
 
 - Google Maps API for providing traffic data and geolocation services.
 - Flask for creating the backend server.
 - All contributors and supporters of this project.
 
-## Contributions
 
-If you'd like to contribute to this project, feel free to submit a pull request with your changes. Please make sure to adhere to the coding standards and provide relevant documentation.
-
----
-
-Thank you for your interest in the Smart Traffic Management System! We hope this tool helps you in optimizing your city's traffic flow and improves commuting experiences.
-```
-
-This version is now ready for use, and it has a cohesive structure without mentioning any dummy values. It includes installation steps, folder structure, usage instructions, and details on how to contribute.
