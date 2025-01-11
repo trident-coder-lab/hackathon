@@ -6,10 +6,12 @@ solution:-
 Solution: Implement dynamic, adaptive traffic signal systems that respond in real-time to traffic flow. Instead of relying on static signal timings (e.g., fixed red and green light durations), smart traffic signals can adjust based on real-time data about traffic density at intersections.
 Technology: Use sensors, cameras, and IoT devices to gather data on traffic conditions. AI algorithms can process the data to adjust signal timings dynamically, reducing unnecessary waiting times and congestion.
 Impact: This can optimize traffic flow, reduce fuel consumption, and minimize emissions caused by vehicles idling at red lights.
+
 2. Traffic Management Systems (TMS)
 Solution: A comprehensive traffic management system can monitor and control traffic patterns across the city. Such systems use real-time data from cameras, sensors, GPS, and other sources to manage traffic at a macro level.
 Technology: Machine learning and predictive analytics can be applied to forecast traffic conditions and suggest route adjustments for both public and private vehicles.
 Impact: This helps alleviate congestion by rerouting traffic away from heavily congested areas, providing dynamic routing solutions based on the latest data.
+
 3.OpenCV (Open Source Computer Vision Library) is a popular open-source library used for computer vision, machine learning, and image processing. It was designed to provide a common infrastructure for computer vision applications and to accelerate the usage of machine perception in commercial products. OpenCV is written in C++, with bindings available for Python, Java, and other languages.
 
 
