@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.ribbon {
+    background-color: #4CAF50; /* Green for the ribbon */
+    color: white;
+    padding: 30px; /* Increased padding for a taller ribbon */
+    position: relative;
+}
+
+.ribbon h1 {
+    margin: 0;
+    position: absolute;
+    top: 10px; /* Adjusted for better vertical alignment */
+    left: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: auto; /* Allow height to adjust based on content */
+    padding: 20px; /* Add some padding */
+    margin-top: 20px; /* Space between the ribbon and the boxes */
+}
+
+.box {
+    width: 300px; /* Increased width */
+    height: 300px; /* Increased height */
+    background-color: #f0f0f0; /* Default background for the second box */
+    border: 2px solid #4CAF50; /* Green border */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative; /* For positioning the button */
+}
+
+/* Styles for the first box (Report an Incident) */
+.box:first-child {
+    background-color: #ffcc00; /* Yellow background for caution */
+    border: 2px solid #ff0000; /* Red border for danger */
+}
+
+.box:first-child:hover {
+    background-color: #ffdb4d; /* Lighter yellow on hover */
+}
+
+/* Styles for the second box (Show Live Traffic Status) */
+.box:nth-child(2) {
+    background-color: #4CAF50; /* Green background for box 2 */
+    border: 2px solid #388E3C; /* Darker green border */
+}
+
+.box:nth-child(2):hover {
+    background-color: #66BB6A; /* Lighter green on hover */
+}
+
+.box:hover {
+    background-color: #e0e0e0; /* Light gray on hover for the first box */
+}
+
+.box-content {
+    text-align: center; /* Center text in the box */
+}
+
+.go-to-button {
+    background-color: #ff0000; /* Red button for danger */
+    color: white;
+    border: none;
+    border-radius: 20px; /* Pill shape */
+    padding: 10px 20px; /* Padding for the button */
+    cursor: pointer;
+    margin-top: 10px; /* Space between text and button */
+    transition: background-color 0.3s;
+}
+
+.go-to-button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+.map-container {
+    padding: 20px;
+    text-align: center; /* Center text in the map section */
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 900px; /* Height for the map placeholder */
+    background-color: #e0e0e0; /* Light gray background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Space above the map */
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Align boxes to the top */
+    padding: 20px;
+    margin-top: 20px; /* Space between the ribbon and the form */
+}
+
+.form-box {
+    width: 45%; /* Each box takes up 45% of the container width */
+    background-color: #f0f0f0; /* Light gray background */
+    border: 2px solid #4CAF50; /* Green border */
+    padding: 20px; /* Padding inside the box */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+.form-box h2 {
+    margin-top: 0; /* Remove top margin for the heading */
+}
+
+.form-box label {
+    display: block; /* Make labels block elements */
+    margin: 10px 0 5px; /* Space around labels */
+}
+
+.form-box input,
+.form-box textarea {
+    width: 100%; /* Full width for inputs */
+    padding: 10px; /* Padding inside inputs */
+    margin-bottom: 15px; /* Space below inputs */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.form-box button {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    padding: 10px 15px; /* Padding for the button */
+    cursor: pointer;
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s;
+}
+
+.form-box button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.map-height {
+    height: 900px; /* Set your desired height here */
+}
+
+.section {
+    padding: 20px; /* Padding around the section */
+    margin-top: 20px; /* Space above the section */
+    text-align: center; /* Center text in the section */
+}
+
+.feedback-form {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    max-width: 400px; /* Maximum width for the form */
+    margin: 0 auto; /* Center the form in the section */
+}
+
+.feedback-form input,
+.feedback-form textarea {
+    width: 100%; /* Full width for inputs */
+    padding: 10px; /* Padding inside inputs */
+    margin-bottom: 15px; /* Space below inputs */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.feedback-form button {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    padding: 10px 15px; /* Padding for the button */
+    cursor: pointer;
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s;
+}
+
+.feedback-form button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
